@@ -71,12 +71,12 @@ module.exports.run = async (bot, message, args) => {
                     console.log(err);
                 });
             }else if (min === 01 || min === 31){
-                embed.setTitle("REQ starts in 4 minuteS!");
+                embed.setTitle("REQ starts in 4 minutes!");
                 bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
                     console.log(err);
                 });
             }else if (min === 04 || min === 34){
-                embed.setTitle("REQ starts in 1 minute **Join the countdown channel and make sure your content is loaded");
+                embed.setTitle("REQ starts in 1 minute **Join the countdown channel and make sure your content is loaded**");
                 bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
                     console.log(err);
                 });
