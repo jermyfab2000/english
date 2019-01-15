@@ -1,6 +1,8 @@
 const Discord = require ('discord.js');
 const Listing = require ('./../modules/Listing');
 const fs = require('fs');
+const settings = require('./../settings.json');
+const owner = settings.owner;
 
 module.exports.run = async (bot, message, args) => {
    let roles = message.guild.roles;
@@ -79,12 +81,12 @@ Instructions:
     let last3 = new Discord.RichEmbed()
         .setTitle ("**Servers**")
         .setColor ("#8600b3")
-
+    
     setTimeout(async () => {
         editLast3= await message.channel.send({embed: last3});
     }, 10);
     
-    const collector =snipeChannel.createMessageCollector(filter, {max: 200, maxMatches: 200, time: 180000});
+    const collector =snipeChannel.createMessageCollector(filter, {time: 180000});
 	snipeChannel.overwritePermissions(
         scrimmers,
         { "SEND_MESSAGES": true}
@@ -94,7 +96,7 @@ Instructions:
 
         console.log(`Collected ${m.content} | ${m.author}`);       
         
-        if (validation(allowedRoles.roles,m.member.roles.array())){
+        if (validation(allowedRoles.roles,m.member.roles.array()) || m.member.id === owner){
             if (m.content === "!start" || m.content === "!stopscrim"){
                 collector.stop();
                 console.log("Collector Stoped");
@@ -161,6 +163,7 @@ Instructions:
             scrimmers,
             { "SEND_MESSAGES": false}
         );
+        console.log("Collector Stoped");
     });    
 		
 }
