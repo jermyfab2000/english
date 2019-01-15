@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     let voice = "531396805217222667";
     let codes = "531420672484835328";
     let general = "531420861488562196";
+    let req = "534636022319939585"
 
     console.log("Activating Auto Comamand");
 
@@ -43,20 +44,17 @@ module.exports.run = async (bot, message, args) => {
                 .setColor("#00cc00");
 
             if (min === 50 || min === 20){
-				embed.setTitle("Next Solos match starts in 10 minutes @everyone **Join Countdown!**");
+	        embed.setTitle("Next match starts in 10 minutes **Join Countdown!**");
                 bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
                     console.log(err);
                 });
             }else if (min === 55 || min === 25){
-                embed.setTitle("Next Solos match starts in 10 minutes @everyone **Join Countdown!**");
+                embed.setTitle("Next match starts in 5 minutes **Join Countdown!**");
                 bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
                     console.log(err);
                 });
-                bot.guilds.get(message.guild.id).channels.get(general).send("!5mc").catch((err) => {
-                    console.log(err);
-                });
             }else if (min === 59 || min === 29){
-                embed.setTitle("Next Solo match starts in 1 minute @everyone **Join the countdown channel and make sure your content is loaded!**");
+                embed.setTitle("Next match starts in 1 minute **Join the countdown channel and make sure your content is loaded!**");
                 bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
                     console.log(err);
                 });
@@ -72,6 +70,30 @@ module.exports.run = async (bot, message, args) => {
                 bot.guilds.get(message.guild.id).channels.get(codes).send("!start").catch((err) => {
                     console.log(err);
                 });
+            }else if (min === 01 || min === 31){
+                embed.setTitle("REQ starts in 4 minuteS!");
+                bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
+                    console.log(err);
+                });
+            }else if (min === 04 || min === 34){
+                embed.setTitle("REQ starts in 1 minute **Join the countdown channel and make sure your content is loaded");
+                bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
+                    console.log(err);
+                });
+			}else if (min === 05 || min === 35){
+                embed.setTitle("STARTING REQ!");
+                bot.guilds.get(message.guild.id).channels.get(general).send({embed: embed}).catch((err) => {
+                    console.log(err);
+                });
+
+                bot.guilds.get(message.guild.id).channels.get(req).send("!count").catch((err) => {
+                    console.log(err);
+                });
+
+                bot.guilds.get(message.guild.id).channels.get(req).send("!start").catch((err) => {
+                    console.log(err);
+                });
+			
             }
 
             const filter = m => !m.author.bot;
@@ -96,5 +118,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-    name: "auto-start-all"
+    name: "auto-start"
 }
