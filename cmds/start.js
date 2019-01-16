@@ -42,6 +42,7 @@ Instructions:
 - Type the last three digits of your in game code in __**#code.**__`)
         .setImage("https://i.imgur.com/7dJzeoT.png")
         .setColor("#8600b3")
+        .addField("Hosted by" , message.author)
         .setFooter("Dev By !Fabian Araya (Xccursed_CR)", "https://i.imgur.com/ADnSULk.jpg");
         
     
