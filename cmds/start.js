@@ -63,20 +63,19 @@ Instructions:
         });
     }, 10);    
 
-    let timeInterval = setInterval (() => {
-        if (time ===1){
-            time -=1;
-            timeEmbed.setDescription(time + "Minutes");
-            clearInterval(timeEmbed);
-        }else {
-            time -=1;
-            timeEmbed.setDescription(time + "Minutes");
-        }
-
-        editTime.edit({embed: timeEmbed}).catch((err) =>{
-            console.log("You can not edit");
+        let timeInterval = setInterval(()=> {
+        if (time >= 2){
+            time -= 1;
+            timeEmbed.setDescription(time + " Minutes");
+        }else if (time === 1){
+            time -= 1;
+            timeEmbed.setDescription(time + " Minutes");
             clearInterval(timeInterval);
-        })
+        }
+        editTime.edit({embed: timeEmbed}).catch((err) => {
+            console.log("Cant edit timer, clearing interval");
+            clearInterval(timeInterval);
+        });
     },60000);
 
     let last3 = new Discord.RichEmbed()
