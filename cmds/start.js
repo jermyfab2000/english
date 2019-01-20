@@ -30,9 +30,9 @@ module.exports.run = async (bot, message, args) => {
 
    let startMessage = new Discord.RichEmbed()
         .setAuthor("PRO AM SCRIMS", "https://i.imgur.com/7dJzeoT.png")
+        .setTitle("__**Multiplatform Scrims**__")
         .setThumbnail("https://i.imgur.com/eR5D1t0.png")
-        .setURL("https://discord.gg/TKHtJft")
-        .setDescription(`__**Multiplatform Scrims**__
+        .addField("Instructions:",`
 Server: ** US-East **
 Instructions:
 -Load content.
@@ -40,8 +40,9 @@ Instructions:
 -When listening to the countdown, give it to the __**GO**__
 - In case you’re on PS4/Xbox, ready with a mouse 
 - Type the last three digits of your in game code in __**#code.**__`)
+        .setURL("https://discord.gg/TKHtJft")
         .setImage("https://i.imgur.com/7dJzeoT.png")
-        .setColor("#8600b3")
+        .setColor("#00A6FF")
         .addField("Hosted by" , message.author)
         .setFooter("Dev By !Fabian Araya (Xccursed_CR)", "https://i.imgur.com/ADnSULk.jpg");
         
@@ -54,7 +55,7 @@ Instructions:
     let timeEmbed = new Discord.RichEmbed()
         .setTitle("**Next Match In...**")
         .setDescription(time + "Minutes")
-        .setColor("#8600b3");
+        .setColor("#EDFF21");
         
 
     setTimeout(async () => {
@@ -79,8 +80,8 @@ Instructions:
     },60000);
 
     let last3 = new Discord.RichEmbed()
-        .setTitle ("**Servers**")
-        .setColor ("#8600b3")
+        .setTitle ("**Current Match**")
+        .setColor ("#1E2460")
     
     setTimeout(async () => {
         editLast3= await message.channel.send({embed: last3});
@@ -97,7 +98,7 @@ Instructions:
         console.log(`Collected ${m.content} | ${m.author}`);       
         
         if (validation(allowedRoles.roles,m.member.roles.array()) || m.member.id === owner){
-            if (m.content === "!start" || m.content === "!stopscrim"){
+            if (m.content === "!start" || m.content === "!stop"){
                 collector.stop();
                 console.log("Collector Stoped");
                 return;
@@ -126,15 +127,17 @@ Instructions:
 
     let str = "";
     last3 = new Discord.RichEmbed()
-        .setTitle("**SERVERS**")
-        .setColor("#8600b3")
+        .setTitle("**Current Match**")
+        .setColor("#1E2460")
 
     for (var i =0; i < game.data.length; i++){
         str = "";
         for (var j = 0; j < game.data[i].users.length ; j++){
             str += game.data[i].users[j] + "\n";
         }
-        last3.addField(`${game.data[i].id.toUpperCase()} - ${game.data[i].users.length} Players` , str, true);
+        last3.addField(`Serv. ${game.data[i].id.toUpperCase()} - ${game.data[i].users.length} Players` , str, true);
+	last3.setFooter(`[ ${game.data.length} Servers | ${game.users.length} Players ]`)
+        last3.setTimestamp()
     }    
 
     editLast3.edit({embed: last3}).catch((err) => {
@@ -154,8 +157,7 @@ Instructions:
 
         console.log(`Collected ${collected.size} items`);
         let endMessage = new Discord.RichEmbed()
-			.setAuthor("Pro Am", "https://i.imgur.com/7dJzeoT.png")
-			.setColor("0x00AE86")
+	    .setColor("F80000")
             .setDescription("No More Codes Accepted At This Point. Good Luck")
             .setFooter("Chat Lock" , "https://i.imgur.com/iGo7XPH.png")
 		message.channel.send({embed: endMessage});
