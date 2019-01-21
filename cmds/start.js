@@ -47,7 +47,7 @@ Instructions:
         .setImage("https://i.imgur.com/7dJzeoT.png")
         .setColor("#00A6FF")
         .addField("Hosted by" , message.author)
-        .setFooter("Dev By !Fabian Araya (Xccursed_CR)", "https://i.imgur.com/ADnSULk.jpg");
+        .setFooter("Dev By !Fabian Araya (Xccursed_CR)", "https://i.imgur.com/ADnSULk.jpg")
 	.setTimestamp()
         
     
