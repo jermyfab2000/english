@@ -5,6 +5,9 @@ const settings = require('./../settings.json');
 const owner = settings.owner;
 
 module.exports.run = async (bot, message, args) => {
+   let voiceChannelID = "531396805217222667";
+   let voice_channel = message.guild.channels.get(voiceChannelID);
+   let members = message.guild.channels.get(voiceChannelID).members.size;
    let roles = message.guild.roles;
    let scrimmers = message.guild.roles.find( r => r.name === "Player");
    let snipeChannel = message.channel;
@@ -45,6 +48,7 @@ Instructions:
         .setColor("#00A6FF")
         .addField("Hosted by" , message.author)
         .setFooter("Dev By !Fabian Araya (Xccursed_CR)", "https://i.imgur.com/ADnSULk.jpg");
+	.setTimestamp()
         
     
     message.channel.send({embed: startMessage});    
@@ -136,8 +140,7 @@ Instructions:
             str += game.data[i].users[j] + "\n";
         }
         last3.addField(`Serv. ${game.data[i].id.toUpperCase()} - ${game.data[i].users.length} Players` , str, true);
-	last3.setFooter(`[ ${game.data.length} Servers | ${game.users.length} Players ]`)
-        last3.setTimestamp()
+	last3.setFooter(`[ ${game.data.length} Servers | ${game.users.length} Players ] [ ${members} Players In ${voice_channel.name} ]`)
     }    
 
     editLast3.edit({embed: last3}).catch((err) => {
